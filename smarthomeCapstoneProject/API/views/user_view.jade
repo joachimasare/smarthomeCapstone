@@ -1,0 +1,162 @@
+html
+  head
+    meta(charset='utf-8')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    |     
+    link(rel='title icon', href='../images/title-img1.png')
+    |     
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
+    |     
+    script(defer='', src='https://use.fontawesome.com/releases/v5.0.13/js/all.js', integrity='sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe', crossorigin='anonymous')
+    |     
+    link(href='https://fonts.googleapis.com/css?family=Montserrat', rel='stylesheet')
+    |     
+    link(rel='stylesheet', href='../stylesheets/style.css')
+    |     
+    title Smart Home - Database View
+  |   
+  body
+    // navbar
+    nav.navbar.navbar-expand-md.navbar-light
+      button.navbar-toggler.ml-auto.mb-2.bg-light(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.navbar-toggler-icon
+      |       
+      #myNavbar.collapse.navbar-collapse
+        .container-fluid
+          .row
+            // sidebar
+            .col-xl-2.col-lg-3.col-md-4.sidebar.fixed-top
+              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='#') Smart Home
+              |               
+              .bottom-border.pb-3
+                img.rounded-circle.mr-3(src='../images/user.jpg', width='50')
+                |                 
+                a.text-white(href='#') Francis Gatsi
+              |               
+              ul.navbar-nav.flex-column.mt-4
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-linkt(href='/user/dashboard')
+                    i.fas.fa-home.text-light.fa-lg.mr-3
+                    | Dashboard
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fas.fa-user.text-light.fa-lg.mr-3
+                    | Account
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fas.fa-camera.text-light.fa-lg.mr-3
+                    | Automation
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fas.fa-chart-line.text-light.fa-lg.mr-3
+                    | Privacy
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.current(href='#')
+                    i.fas.fa-database.text-light.fa-lg.mr-3
+                    | User Database View
+            // end of sidebar
+            // top-nav
+            .col-xl-10.col-lg-9.col-md-8.ml-auto.bg-dark.fixed-top.py-2.top-navbar
+              .row.align-items-center
+                .col-md-4
+                  h4.text-light.text-uppercase.mb-0 User Dashboard
+                |                 
+                .col-md-5
+                  form
+                |                 
+                .col-md-3
+                  ul.navbar-nav
+                    li.nav-item.icon-parent
+                      a.nav-link.icon-bullet(href='#')
+                        i.fas.fa-comments.text-muted.fa-lg
+                    |                     
+                    li.nav-item.icon-parent
+                      a.nav-link.icon-bullet(href='#')
+                        i.fas.fa-bell.text-muted.fa-lg
+                    |                     
+                    li.nav-item.ml-md-auto
+                      a.nav-link(href='#', data-toggle='modal', data-target='#sign-out')
+                        i.fas.fa-sign-out-alt.text-danger.fa-lg
+            // end of top-nav
+    // end of navbar
+    // modal
+    #sign-out.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title Want to leave?
+            |             
+            button.close(type='button', data-dismiss='modal') &times;
+          |           
+          .modal-body
+            | Press logout to leave
+          |           
+          .modal-footer
+            button.btn.btn-success(type='button', data-dismiss='modal') Stay Here
+            |             
+            button.btn.btn-danger(type='button', data-dismiss='modal') Logout
+    // end of modal
+    // live database for user view
+    section
+      .container-fluid
+        .row
+          .col-xl-10.col-lg-9.col-md-8.ml-auto
+            .row.mb-4.align-items-center
+              .col-12.mb-4.mb-xl-0
+                .bg-light.text-dark.p-4.rounded
+                  table.table.table-bordered
+                    thead
+                      tr
+                        th(scope='col') #
+                        |                           
+                        th(scope='col') time_captured
+                        |                           
+                        th(scope='col') video_data
+                        |                           
+                        th(scope='col') audio_data
+                        |                           
+                        th(scope='col') temp_data
+                    |                       
+                    tbody
+                      each record in records
+                        tr
+                          th(scope='row')=record._id
+                          |                           
+                          td=record.timestamps
+                          |                           
+                          td=record.image
+                          |                           
+                          td=record.audio
+                          |                           
+                          td=record.temperature
+                        |                         
+                  // pagination
+                  //- nav
+                  //-   ul.pagination.justify-content-center
+                  //-     li.page-item
+                  //-       a.page-link.py-2.px-3(href='#')
+                  //-         span &laquo;
+                  //-     |                                       
+                  //-     li.page-item.active
+                  //-       a.page-link.py-2.px-3(href='#')
+                  //-         | 1
+                  //-     |                                       
+                  //-     li.page-item
+                  //-       a.page-link.py-2.px-3(href='#')
+                  //-         | 2
+                  //-     |                                       
+                  //-     li.page-item
+                  //-       a.page-link.py-2.px-3(href='#')
+                  //-         | 3
+                  //-     |                                       
+                  //-     li.page-item
+                  //-       a.page-link.py-2.px-3(href='#')
+                  //-         span &raquo;
+                  // end of pagination
+      // </div>
+    // end of Live database for user view

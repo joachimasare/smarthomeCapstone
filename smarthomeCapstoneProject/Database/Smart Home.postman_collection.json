@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "52bf31a6-be7b-4456-80b1-a8de693033f5",
+		"name": "Smart Home",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Save records(with image)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"contentType": "",
+							"type": "file",
+							"src": "/C:/Users/NERGE/Pictures/test-pic.jpg"
+						},
+						{
+							"key": "temperature",
+							"value": "24.0",
+							"type": "text"
+						},
+						{
+							"key": "audiofilename",
+							"value": "airdrop.mp3",
+							"type": "text"
+						},
+						{
+							"key": "imageFilename",
+							"value": "image.jpg",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/recordings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"recordings"
+					]
+				},
+				"description": "use the body in the article and add\r\n\r\n* temperature : #some value\r\n* audiofile : #name of audio file\r\n* imageFilename : #name of filename"
+			},
+			"response": []
+		},
+		{
+			"name": "Update temperature reading status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\":\"authorized\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/temperature",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"temperature"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update audio reading status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\":\"authorized\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/audio",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"audio"
+					],
+					"query": [
+						{
+							"key": "stau",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Image recording status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\":\"unauthorized\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/upload/image",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"upload",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save records(without image)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"temperature\":\"32.0\",\n\t\"audiofilename\" : \"bum.mp3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/recording",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"recording"
+					]
+				},
+				"description": "in the body pass a json object \r\n{\r\n    temperature: #some temperature value,\r\n    audiofilename: #some audio file name\r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get sensor status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/status",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

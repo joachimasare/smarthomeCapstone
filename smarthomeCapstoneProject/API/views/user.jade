@@ -1,0 +1,262 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    |     
+    link(rel='title icon', href='../images/title-img1.png')
+    |     
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
+    |     
+    script(defer='', src='https://use.fontawesome.com/releases/v5.0.13/js/all.js', integrity='sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe', crossorigin='anonymous')
+
+    script(defer='', src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')    
+    
+    link(href='https://fonts.googleapis.com/css?family=Montserrat', rel='stylesheet')
+    |     
+    link(rel='stylesheet', href='../stylesheets/style.css')
+    |     
+    title Smart Home (User)
+  |   
+  body
+    // navbar
+    nav.navbar.navbar-expand-md.navbar-light
+      button.navbar-toggler.ml-auto.mb-2.bg-light(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.navbar-toggler-icon
+      |       
+      #myNavbar.collapse.navbar-collapse
+        .container-fluid
+          .row
+            // sidebar
+            .col-xl-2.col-lg-3.col-md-4.sidebar.fixed-top
+              a.navbar-brand.text-white.d-block.mx-auto.text-center.py-3.mb-4.bottom-border(href='#') Smart Home
+              |               
+              .bottom-border.pb-3
+                img.rounded-circle.mr-3(src='../images/user.jpg', width='50')
+                |                 
+                a.text-white(href='#') Francis Gatsi
+              |               
+              ul.navbar-nav.flex-column.mt-4
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.current(href='#')
+                    i.fas.fa-home.text-light.fa-lg.mr-3
+                    | Dashboard
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fas.fa-user.text-light.fa-lg.mr-3
+                    | Account
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fas.fa-camera.text-light.fa-lg.mr-3
+                    | Automation
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='#')
+                    i.fas.fa-chart-line.text-light.fa-lg.mr-3
+                    | Privacy
+                |                 
+                li.nav-item
+                  a.nav-link.text-white.p-3.mb-2.sidebar-link(href='/user/database')
+                    i.fas.fa-database.text-light.fa-lg.mr-3
+                    | User Database View
+            // end of sidebar
+            // top-nav
+            .col-xl-10.col-lg-9.col-md-8.ml-auto.bg-dark.fixed-top.py-2.top-navbar
+              .row.align-items-center
+                .col-md-4
+                  h4.text-light.text-uppercase.mb-0 User Dashboard
+                |                 
+                .col-md-5
+                  form
+                |                 
+                .col-md-3
+                  ul.navbar-nav
+                    li.nav-item.icon-parent
+                      a.nav-link.icon-bullet(href='#')
+                        i.fas.fa-comments.text-muted.fa-lg
+                    |                     
+                    li.nav-item.icon-parent
+                      a.nav-link.icon-bullet(href='#')
+                        i.fas.fa-bell.text-muted.fa-lg
+                    |                     
+                    li.nav-item.ml-md-auto
+                      a.nav-link(href='#', data-toggle='modal', data-target='#sign-out')
+                        i.fas.fa-sign-out-alt.text-danger.fa-lg
+            // end of top-nav
+    // end of navbar
+    // modal
+    #sign-out.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title Want to leave?
+            |             
+            button.close(type='button', data-dismiss='modal') &times;
+          |           
+          .modal-body
+            | Press logout to leave
+          |           
+          .modal-footer
+            button.btn.btn-success(type='button', data-dismiss='modal') Stay Here
+            |             
+            button.btn.btn-danger(type='button', data-dismiss='modal') Logout
+    // end of modal
+    // Automation Buttons
+    section
+      .container-fluid
+        .row.mb-5
+          .col-xl-10.col-lg-9.col-md-8.ml-auto
+            .row.align-items-center
+              .col-12.mb-4.mb-xl-0
+                h3.text-muted.text-center.mb-3 Remote Automation Controls
+                |                 
+                table.table.table-dark.table-borderless.table-hover.text-center
+                  thead
+                    tr.text-muted
+                      th Feature
+                      |                       
+                      th Control
+                  |                   
+                  tbody
+                    tr
+                      th Door Upstairs
+                      |                       
+                      td(colspan='2')
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("open_doorUp")`) OPEN
+                        |  
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("close_doorUp")`) CLOSE
+                    |                     
+                    tr
+                      th Door Downstairs
+                      |                       
+                      td(colspan='2')
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("open_doorDown")`) OPEN
+                        |  
+                        button.btn.btn-info.btn-sm(type='button'  onClick=`trigger_raspberry("close_doorDown")`) CLOSE
+                    |                     
+                    tr
+                      th Left Window
+                      |                       
+                      td(colspan='2')
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("open_windowL")`) OPEN
+                        |  
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("close_windowL")`) CLOSE
+                    |                     
+                    tr
+                      th Right Window
+                      |                       
+                      td(colspan='2')
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("open_windowR")`) OPEN
+                        |  
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("close_windowR")`) CLOSE
+                    |  
+                    |                     
+                    tr
+                      th All Doors
+                      |                       
+                      td(colspan='2')
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("open_allDoors")`) OPEN
+                        |  
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("close_allDoors")`) CLOSE
+                    |  
+                    |                     
+                    tr
+                      th All Windows
+                      |                       
+                      td(colspan='2')
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("open_allWindows")`) OPEN
+                        |  
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("close_allWindows")`) CLOSE
+                    |  
+                    |                     
+                    tr
+                      th All Doors and Windows
+                      |                       
+                      td(colspan='2')
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("open_all")`) OPEN
+                        |  
+                        button.btn.btn-info.btn-sm(type='button' onClick=`trigger_raspberry("close_all")`) CLOSE
+    // end of Remote Automation Buttons
+    // user privacy session
+    section
+      .container-fluid
+        .row.mb-5
+          .col-xl-10.col-lg-9.col-md-8.ml-auto
+            .row.align-items-center
+              .col-12.mb-4.mb-xl-0
+                h3.text-muted.text-center.mb-0  Privacy Session: User Autonomy Access
+                |                     
+                |                           &lt;
+                table.table.table-dark.table-hover.text-center
+                  thead
+                    tr.text-muted
+                      th ID
+                      |                           
+                      th Data Type
+                      |                           
+                      th Authorization
+                      |                           
+                      th Deauthorization
+                  |                       
+                  tbody
+                    tr
+                      th 1
+                      |                           
+                      td Image
+                      |                           
+                      td
+                        button.btn.btn-info.btn-sm(type='button' onClick=`authorize('upload/image')`) Authorize
+                      |                           
+                      td
+                        button.btn.btn-info.btn-sm(type='button' onClick=`unauthorize('upload/image')`) Unauthorize
+                    |                         
+                    tr
+                      th 2
+                      |                           
+                      td Audio
+                      |                           
+                      td
+                        button.btn.btn-info.btn-sm(type='button' onClick=`authorize('audio')`) Authorize
+                      |                           
+                      td
+                        button.btn.btn-info.btn-sm(type='button' onClick=`unauthorize('audio')`) Unauthorize
+                    |                         
+                    tr
+                      th 3
+                      td Temperature values
+                      |                           
+                      td
+                        button.btn.btn-info.btn-sm(type='button' onClick=`authorize('temperature')`) Authorize
+                      |                           
+                      td
+                        button.btn.btn-info.btn-sm(type='button' onClick=`unauthorize('temperature')`) Unauthorize
+                    |                         
+    // end of user privacy Session
+    // footer
+    footer
+      .container-fluid
+        .row
+          .col-xl-10.col-lg-9.col-md-8.ml-auto
+            .row.border-top.pt-3
+              .col-lg-6.text-center
+                ul.list-inline
+                  li.list-inline-item.mr-2
+                    a.text-dark(href='#') Smart Home
+                  |                   
+                  li.list-inline-item.mr-2
+                    a.text-dark(href='#') Dashboard
+              |               
+              .col-lg-6.text-center
+                p(style='font-size: 80%;')
+                  | 2020 Capstone project:Proof of concept to implement user autonomy in a Smart Home IoT scenario
+    // end of footer
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    |     
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
+    |     
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T', crossorigin='anonymous')
+    |     
+    script(src='../javascripts/script.js')
